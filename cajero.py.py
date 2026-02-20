@@ -2,6 +2,31 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 import sqlite3
 from datetime import datetime
+import tkinter.simpledialog as sd
+# ---------------------------
+# INICIO DE SESIÓN
+# ---------------------------
+
+USUARIO = "admin"
+CONTRASEÑA = "1234"
+
+def iniciar_sesion():
+    usuario = sd.askstring("Inicio de sesión", "Ingrese su usuario:")
+    if usuario != USUARIO:
+        messagebox.showerror("Error", "Usuario incorrecto")
+        return False
+
+    contrasena = sd.askstring("Inicio de sesión", "Ingrese su contraseña:", show="*")
+    if contrasena != CONTRASEÑA:
+        messagebox.showerror("Error", "Contraseña incorrecta")
+        return False
+
+    messagebox.showinfo("Bienvenido", f"Bienvenido {usuario}")
+    return True
+# Intentar iniciar sesión antes de abrir la GUI
+if not iniciar_sesion():
+    exit()  # Cierra el programa si falla el inicio de sesión
+    
 #ejemplo
 # ---------------------------
 # CONEXIÓN A BASE DE DATOS,
